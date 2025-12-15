@@ -2,6 +2,8 @@
 
 Proyecto académico desarrollado con **HTML, CSS y JavaScript**, que implementa un sistema de gestión de tareas con un CRUD completo (Crear, Leer, Editar y Eliminar), utilizando **JSON** y **localStorage** para la persistencia de datos.
 
+<img width="1365" height="680" alt="image" src="https://github.com/user-attachments/assets/33c60224-06fc-4d2e-9a18-204f944a9973" />
+
 ---
 
 ### 📄 Descripción de los archivos
@@ -52,7 +54,7 @@ Las tareas se almacenan como un **arreglo de objetos JSON** dentro del `localSto
 ]
 ```
 
-<img width="357" height="157" alt="image" src="https://github.com/user-attachments/assets/d7ba7b6f-16cb-42ae-ad17-97efd69bad63" />
+<img width="368" height="167" alt="image" src="https://github.com/user-attachments/assets/0184942c-5827-44c6-953c-8a99bf6db0f1" />
 
 
 ## ▶️ Cómo arrancar la aplicación
