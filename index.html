@@ -4,20 +4,32 @@
     <meta charset="UTF-8">
     <title>TaskMaster - Sistema de Tareas CRUD</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
 
 <aside class="sidebar">
     <div class="brand">
-        <div class="brand-logo">Tasky</div>
+        <div class="brand-logo">
+            <i class="fa-solid fa-list-check"></i> Tasky
+        </div>
     </div>
 
     <nav class="menu">
-        <button class="menu-item active">Dashboard</button>
-        <button class="menu-item">Tasks</button>
-        <button class="menu-item">Calendar</button>
-        <button class="menu-item">Members</button>
+        <button class="menu-item active">
+            <i class="fa-solid fa-chart-line"></i> Dashboard
+        </button>
+        <button class="menu-item">
+            <i class="fa-solid fa-list-check"></i> Tasks
+        </button>
+        <button class="menu-item">
+            <i class="fa-solid fa-calendar-days"></i> Calendar
+        </button>
+        <button class="menu-item">
+            <i class="fa-solid fa-users"></i> Members
+        </button>
     </nav>
 </aside>
 
@@ -25,17 +37,20 @@
 
     <div class="topbar">
         <div class="searchbox">
+            <i class="fa-solid fa-magnifying-glass"></i>
             <input type="text" id="busqueda" placeholder="Search tasks">
         </div>
 
         <div class="topbar-right">
-            <button id="btnAbrirModal" class="btn primary">+ Add task</button>
+            <button id="btnAbrirModal" class="btn primary">
+                <i class="fa-solid fa-plus"></i> Add task
+            </button>
         </div>
     </div>
 
     <div class="controls">
         <div class="control-group">
-            <label>Priority</label>
+            <label><i class="fa-solid fa-flag"></i> Priority</label>
             <select id="filtroPrioridad">
                 <option value="">All</option>
                 <option value="Alta">High</option>
@@ -45,12 +60,12 @@
         </div>
 
         <div class="control-group">
-            <label>Subject</label>
+            <label><i class="fa-solid fa-book"></i> Subject</label>
             <input type="text" id="filtroMateria" placeholder="Filter by subject">
         </div>
 
         <div class="control-group">
-            <label>Order</label>
+            <label><i class="fa-solid fa-arrow-up-wide-short"></i> Order</label>
             <select id="ordenar">
                 <option value="fechaAsc">Date ↑</option>
                 <option value="fechaDesc">Date ↓</option>
@@ -64,24 +79,39 @@
 
         <div class="column">
             <div class="column-header">
-                <span class="column-title">In Progress <span id="countPendiente">(0)</span></span>
-                <button class="btn icon" data-quick="pendiente">⋮</button>
+                <span class="column-title">
+                    <i class="fa-solid fa-spinner"></i>
+                    In Progress <span id="countPendiente">(0)</span>
+                </span>
+                <button class="btn icon" data-quick="pendiente">
+                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                </button>
             </div>
             <div class="column-body" id="colPendiente"></div>
         </div>
 
         <div class="column">
             <div class="column-header">
-                <span class="column-title">Completed <span id="countCompletada">(0)</span></span>
-                <button class="btn icon" data-quick="completada">⋮</button>
+                <span class="column-title">
+                    <i class="fa-solid fa-circle-check"></i>
+                    Completed <span id="countCompletada">(0)</span>
+                </span>
+                <button class="btn icon" data-quick="completada">
+                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                </button>
             </div>
             <div class="column-body" id="colCompletada"></div>
         </div>
 
         <div class="column">
             <div class="column-header">
-                <span class="column-title">Over-Due <span id="countVencida">(0)</span></span>
-                <button class="btn icon" data-quick="vencida">⋮</button>
+                <span class="column-title">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                    Over-Due <span id="countVencida">(0)</span>
+                </span>
+                <button class="btn icon" data-quick="vencida">
+                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                </button>
             </div>
             <div class="column-body" id="colVencida"></div>
         </div>
@@ -93,30 +123,34 @@
     <div class="modal-content">
 
         <div class="modal-header">
-            <h3 id="modalTitulo">Nueva tarea</h3>
-            <button id="btnCerrarModal" class="btn icon">✕</button>
+            <h3 id="modalTitulo">
+                <i class="fa-solid fa-pen-to-square"></i> Nueva tarea
+            </h3>
+            <button id="btnCerrarModal" class="btn icon">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
         </div>
 
         <form id="formTarea" class="form">
             <input type="hidden" id="editId">
 
             <div class="form-row">
-                <label>Título</label>
+                <label><i class="fa-solid fa-heading"></i> Título</label>
                 <input type="text" id="titulo">
             </div>
 
             <div class="form-row">
-                <label>Materia</label>
+                <label><i class="fa-solid fa-book"></i> Materia</label>
                 <input type="text" id="materia">
             </div>
 
             <div class="form-row">
-                <label>Fecha de entrega</label>
+                <label><i class="fa-solid fa-calendar-day"></i> Fecha de entrega</label>
                 <input type="date" id="fecha">
             </div>
 
             <div class="form-row">
-                <label>Prioridad</label>
+                <label><i class="fa-solid fa-flag"></i> Prioridad</label>
                 <select id="prioridad">
                     <option value="">Seleccione</option>
                     <option value="Alta">Alta</option>
@@ -126,15 +160,19 @@
             </div>
 
             <div class="form-row">
-                <label>Descripción</label>
+                <label><i class="fa-solid fa-align-left"></i> Descripción</label>
                 <textarea id="descripcion" rows="4"></textarea>
             </div>
 
             <div id="mensaje" class="mensaje"></div>
 
             <div class="form-actions">
-                <button type="button" id="btnCancelar" class="btn">Cancelar</button>
-                <button type="submit" class="btn primary">Guardar</button>
+                <button type="button" id="btnCancelar" class="btn">
+                    <i class="fa-solid fa-ban"></i> Cancelar
+                </button>
+                <button type="submit" class="btn primary">
+                    <i class="fa-solid fa-floppy-disk"></i> Guardar
+                </button>
             </div>
         </form>
 
@@ -172,4 +210,3 @@ function obtenerEstado(t) {
 
 </body>
 </html>
-
