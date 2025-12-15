@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>TaskMaster - Sistema de Tareas CRUD</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+<aside class="sidebar">
+    <div class="brand">
+        <div class="brand-logo">Tasky</div>
+    </div>
+
+    <nav class="menu">
+        <button class="menu-item active">Dashboard</button>
+        <button class="menu-item">Tasks</button>
+        <button class="menu-item">Calendar</button>
+        <button class="menu-item">Members</button>
+    </nav>
+</aside>
+
+<main class="main">
+
+    <div class="topbar">
+        <div class="searchbox">
+            <input type="text" id="busqueda" placeholder="Search tasks">
+        </div>
+
+        <div class="topbar-right">
+            <button id="btnAbrirModal" class="btn primary">+ Add task</button>
+        </div>
+    </div>
+
+    <div class="controls">
+        <div class="control-group">
+            <label>Priority</label>
+            <select id="filtroPrioridad">
+                <option value="">All</option>
+                <option value="Alta">High</option>
+                <option value="Media">Medium</option>
+                <option value="Baja">Low</option>
+            </select>
+        </div>
+
+        <div class="control-group">
+            <label>Subject</label>
+            <input type="text" id="filtroMateria" placeholder="Filter by subject">
+        </div>
+
+        <div class="control-group">
+            <label>Order</label>
+            <select id="ordenar">
+                <option value="fechaAsc">Date ↑</option>
+                <option value="fechaDesc">Date ↓</option>
+                <option value="prioridadAsc">Priority ↑</option>
+                <option value="prioridadDesc">Priority ↓</option>
+            </select>
+        </div>
+    </div>
+
+    <section class="board">
+
+        <div class="column">
+            <div class="column-header">
+                <span class="column-title">In Progress <span id="countPendiente">(0)</span></span>
+                <button class="btn icon" data-quick="pendiente">⋮</button>
+            </div>
+            <div class="column-body" id="colPendiente"></div>
+        </div>
+
+        <div class="column">
+            <div class="column-header">
+                <span class="column-title">Completed <span id="countCompletada">(0)</span></span>
+                <button class="btn icon" data-quick="completada">⋮</button>
+            </div>
+            <div class="column-body" id="colCompletada"></div>
+        </div>
+
+        <div class="column">
+            <div class="column-header">
+                <span class="column-title">Over-Due <span id="countVencida">(0)</span></span>
+                <button class="btn icon" data-quick="vencida">⋮</button>
+            </div>
+            <div class="column-body" id="colVencida"></div>
+        </div>
+
+    </section>
+</main>
+
+<div id="modal" class="modal hidden">
+    <div class="modal-content">
+
+        <div class="modal-header">
+            <h3 id="modalTitulo">Nueva tarea</h3>
+            <button id="btnCerrarModal" class="btn icon">✕</button>
+        </div>
+
+        <form id="formTarea" class="form">
+            <input type="hidden" id="editId">
+
+            <div class="form-row">
+                <label>Título</label>
+                <input type="text" id="titulo">
+            </div>
+
+            <div class="form-row">
+                <label>Materia</label>
+                <input type="text" id="materia">
+            </div>
+
+            <div class="form-row">
+                <label>Fecha de entrega</label>
+                <input type="date" id="fecha">
+            </div>
+
+            <div class="form-row">
+                <label>Prioridad</label>
+                <select id="prioridad">
+                    <option value="">Seleccione</option>
+                    <option value="Alta">Alta</option>
+                    <option value="Media">Media</option>
+                    <option value="Baja">Baja</option>
+                </select>
+            </div>
+
+            <div class="form-row">
+                <label>Descripción</label>
+                <textarea id="descripcion" rows="4"></textarea>
+            </div>
+
+            <div id="mensaje" class="mensaje"></div>
+
+            <div class="form-actions">
+                <button type="button" id="btnCancelar" class="btn">Cancelar</button>
+                <button type="submit" class="btn primary">Guardar</button>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+<script>
+function cargarTareas() {}
+
+function generarId() {
+    return Date.now().toString();
+}
+
+function prioridadAValor(p) {
+    if (p === "Alta") return 3;
+    if (p === "Media") return 2;
+    return 1;
+}
+
+function obtenerEstado(t) {
+    if (t.completada) return "completada";
+    const hoy = new Date(); hoy.setHours(0,0,0,0);
+    const f = new Date(t.fechaEntrega); f.setHours(0,0,0,0);
+    if (f < hoy) return "vencida";
+    return "pendiente";
+}
+</script>
+
+<script src="js/data.js"></script>
+<script src="js/create.js"></script>
+<script src="js/read.js"></script>
+<script src="js/update.js"></script>
+<script src="js/delete.js"></script>
+<script src="js/main.js"></script>
+
+</body>
+</html>
+
