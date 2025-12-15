@@ -50,6 +50,10 @@ Las tareas se almacenan como un **arreglo de objetos JSON** dentro del `localSto
     "completada": false
   }
 ]
+```
+
+<img width="357" height="157" alt="image" src="https://github.com/user-attachments/assets/d7ba7b6f-16cb-42ae-ad17-97efd69bad63" />
+
 
 ## ▶️ Cómo arrancar la aplicación
 
