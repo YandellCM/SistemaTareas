@@ -66,7 +66,7 @@ Funciona directamente desde el navegador web.
 
 1. Entra al repositorio del proyecto en GitHub:
    
-   https://github.com/YandellCM/Sistemas-Gestion-Tareas
+https://github.com/YandellCM/SistemaTareas/
 
 2. Descarga el proyecto usando el botón **Code → Download ZIP**  
    o clónalo si usas Git.
@@ -93,7 +93,7 @@ GitHub Pages permite usar la aplicación directamente desde internet, sin descar
 
 1. Entra al repositorio:
    
-   https://github.com/YandellCM/Sistemas-Gestion-Tareas
+   https://github.com/YandellCM/SistemaTareas/
 
 2. Haz clic en la pestaña **Settings**.
 
@@ -107,7 +107,7 @@ GitHub Pages permite usar la aplicación directamente desde internet, sin descar
 
 GitHub generará automáticamente un enlace público como este:
 
-https://yandellcm.github.io/Sistemas-Gestion-Tareas/
+https://yandellcm.github.io/SistemaTareas/
 
 6. Abre ese enlace en el navegador y la aplicación funcionará igual que en local.
 
