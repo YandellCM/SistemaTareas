@@ -3,11 +3,7 @@
 function actualizarTarea(id, datos) {
     for (let i = 0; i < tareas.length; i++) {
         if (String(tareas[i].id) === String(id)) {
-            tareas[i].fechaEntrega = datos.fechaEntrega;
-            tareas[i].materia = datos.materia;
-            tareas[i].prioridad = datos.prioridad;
-            tareas[i].titulo = datos.titulo;
-            tareas[i].descripcion = datos.descripcion;
+            tareas[i] = { ...tareas[i], ...datos };
             guardarTareas();
             return true;
         }
@@ -25,4 +21,3 @@ function marcarCompletada(id) {
     }
     return false;
 }
-

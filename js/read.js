@@ -1,6 +1,7 @@
 "use strict";
 
 function textoCorto(texto, max) {
+    if (!texto) return "";
     return texto.length > max ? texto.slice(0, max) + "..." : texto;
 }
 
@@ -14,6 +15,27 @@ function claseEstado(e) {
     if (e === "completada") return "estado-completada";
     if (e === "vencida") return "estado-vencida";
     return "estado-pendiente";
+}
+
+function aplicarFiltros() {
+    const texto = document.getElementById("busqueda").value.toLowerCase().trim();
+    const materiaFiltro = document.getElementById("filtroMateria").value.toLowerCase().trim();
+    const prioridadFiltro = document.getElementById("filtroPrioridad").value;
+
+    return tareas.filter(t => {
+        const coincideTexto =
+            t.titulo.toLowerCase().includes(texto) ||
+            t.descripcion.toLowerCase().includes(texto) ||
+            t.materia.toLowerCase().includes(texto);
+
+        const coincideMateria =
+            !materiaFiltro || t.materia.toLowerCase().includes(materiaFiltro);
+
+        const coincidePrioridad =
+            !prioridadFiltro || t.prioridad === prioridadFiltro;
+
+        return coincideTexto && coincideMateria && coincidePrioridad;
+    });
 }
 
 function crearCard(tarea) {
@@ -59,13 +81,12 @@ function crearCard(tarea) {
     `;
 
     if (estado === "completada") {
-        card.querySelector(".btn-completar").style.display = "none";
+        const btn = card.querySelector(".btn-completar");
+        if (btn) btn.style.display = "none";
     }
 
     return card;
 }
-
-
 
 function renderTareas(quickEstado) {
     const colPendiente = document.getElementById("colPendiente");
@@ -78,12 +99,14 @@ function renderTareas(quickEstado) {
 
     let cP = 0, cC = 0, cV = 0;
 
-    tareas.forEach(tarea => {
+    const lista = aplicarFiltros();
+
+    lista.forEach(tarea => {
         const estado = obtenerEstado(tarea);
 
         if (estado === "pendiente") cP++;
-        if (estado === "completada") cC++;
-        if (estado === "vencida") cV++;
+        else if (estado === "completada") cC++;
+        else cV++;
 
         if (quickEstado && estado !== quickEstado) return;
 
