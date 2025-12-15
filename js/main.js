@@ -54,35 +54,14 @@ document.addEventListener("DOMContentLoaded", function () {
     cargarTareas();
     renderTareas("");
 
-    document.getElementById("btnAbrirModal")
-        .addEventListener("click", () => abrirModal("crear"));
+    document.getElementById("btnAbrirModal").addEventListener("click", () => abrirModal("crear"));
+    document.getElementById("btnCerrarModal").addEventListener("click", cerrarModal);
+    document.getElementById("btnCancelar").addEventListener("click", cerrarModal);
 
-    document.getElementById("btnCerrarModal")
-        .addEventListener("click", cerrarModal);
-
-    document.getElementById("btnCancelar")
-        .addEventListener("click", cerrarModal);
-
-    document.getElementById("busqueda")
-        .addEventListener("input", () => renderTareas(quickFiltroEstado));
-
-    document.getElementById("filtroPrioridad")
-        .addEventListener("change", () => renderTareas(quickFiltroEstado));
-
-    document.getElementById("filtroMateria")
-        .addEventListener("input", () => renderTareas(quickFiltroEstado));
-
-    document.getElementById("ordenar")
-        .addEventListener("change", () => renderTareas(quickFiltroEstado));
-
-    document.querySelectorAll("[data-quick]").forEach(btn => {
-        btn.addEventListener("click", function () {
-            const estado = this.dataset.quick;
-            const activo = this.classList.toggle("activo");
-            quickFiltroEstado = activo ? estado : "";
-            renderTareas(quickFiltroEstado);
-        });
-    });
+    document.getElementById("busqueda").addEventListener("input", () => renderTareas(quickFiltroEstado));
+    document.getElementById("filtroPrioridad").addEventListener("change", () => renderTareas(quickFiltroEstado));
+    document.getElementById("filtroMateria").addEventListener("input", () => renderTareas(quickFiltroEstado));
+    document.getElementById("ordenar").addEventListener("change", () => renderTareas(quickFiltroEstado));
 
     document.getElementById("formTarea").addEventListener("submit", function (e) {
         e.preventDefault();
@@ -114,7 +93,6 @@ document.addEventListener("DOMContentLoaded", function () {
         cerrarModal();
         renderTareas(quickFiltroEstado);
     });
-
 });
 
 document.addEventListener("click", function (e) {
@@ -126,10 +104,10 @@ document.addEventListener("click", function (e) {
 
     if (accion === "vermas") {
         const desc = document.getElementById("desc_" + id);
+        if (!desc) return;
+
         desc.classList.toggle("expandida");
-        btn.textContent = desc.classList.contains("expandida")
-            ? "Ver menos"
-            : "Ver más";
+        btn.textContent = desc.classList.contains("expandida") ? "Ver menos" : "Ver más";
     }
 
     if (accion === "editar") {
@@ -147,4 +125,17 @@ document.addEventListener("click", function (e) {
         marcarCompletada(id);
         renderTareas(quickFiltroEstado);
     }
+});
+
+document.addEventListener("click", function (e) {
+    const btn = e.target.closest(".column-header .btn.icon");
+    if (!btn) return;
+
+    const columna = btn.closest(".column");
+    if (!columna) return;
+
+    const body = columna.querySelector(".column-body");
+    if (!body) return;
+
+    body.classList.toggle("hidden");
 });

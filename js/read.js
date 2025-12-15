@@ -54,8 +54,9 @@ function crearCard(tarea) {
         </div>
 
         <div class="card-desc" id="desc_${tarea.id}">
-            ${textoCorto(tarea.descripcion, 120)}
+            ${tarea.descripcion}
         </div>
+
 
         <button type="button" class="ver-mas"
             data-action="vermas" data-id="${tarea.id}">

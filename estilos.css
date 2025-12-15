@@ -278,6 +278,7 @@ body{
   max-height:none;
 }
 
+
 .ver-mas{
   margin-top:8px;
   font-size:12px;
@@ -487,4 +488,25 @@ body{
     padding:12px;
   }
 
+}
+
+.column-body.hidden {
+  display: none;
+}
+
+.card,
+.card-desc {
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+.column-body {
+  transition: max-height 0.25s ease, opacity 0.2s ease;
+}
+
+.column-body.oculta {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
 }
