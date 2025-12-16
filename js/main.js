@@ -138,4 +138,10 @@ document.addEventListener("click", function (e) {
     if (!body) return;
 
     body.classList.toggle("hidden");
+
+    const btnMobile = document.getElementById("btnAbrirModalMobile");
+    if (btnMobile) {
+        btnMobile.addEventListener("click", () => abrirModal("crear"));
+    }
+
 });

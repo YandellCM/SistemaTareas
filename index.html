@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <title>TaskMaster - Sistema de Tareas CRUD</title>
@@ -8,205 +9,219 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="estilos.css">
 </head>
+
 <body>
 
-<aside class="sidebar">
-    <div class="brand">
-        <div class="brand-logo">
-            <i class="fa-solid fa-list-check"></i> Tasky
-        </div>
-    </div>
-
-    <nav class="menu">
-        <button class="menu-item active">
-            <i class="fa-solid fa-chart-line"></i> Dashboard
-        </button>
-        <button class="menu-item">
-            <i class="fa-solid fa-list-check"></i> Tasks
-        </button>
-        <button class="menu-item">
-            <i class="fa-solid fa-calendar-days"></i> Calendar
-        </button>
-        <button class="menu-item">
-            <i class="fa-solid fa-users"></i> Members
-        </button>
-    </nav>
-</aside>
-
-<main class="main">
-
-    <div class="topbar">
-        <div class="searchbox">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" id="busqueda" placeholder="Search tasks">
+    <aside class="sidebar">
+        <div class="brand">
+            <div class="brand-logo">
+                <i class="fa-solid fa-list-check"></i> Tasky
+            </div>
         </div>
 
-        <div class="topbar-right">
-            <button id="btnAbrirModal" class="btn primary">
-                <i class="fa-solid fa-plus"></i> Add task
+        <nav class="menu">
+            <button class="menu-item active">
+                <i class="fa-solid fa-chart-line"></i> Dashboard
             </button>
-        </div>
-    </div>
+            <button class="menu-item">
+                <i class="fa-solid fa-list-check"></i> Tasks
+            </button>
+            <button class="menu-item">
+                <i class="fa-solid fa-calendar-days"></i> Calendar
+            </button>
+            <button class="menu-item">
+                <i class="fa-solid fa-users"></i> Members
+            </button>
+        </nav>
+    </aside>
 
-    <div class="controls">
-        <div class="control-group">
-            <label><i class="fa-solid fa-flag"></i> Priority</label>
-            <select id="filtroPrioridad">
-                <option value="">All</option>
-                <option value="Alta">High</option>
-                <option value="Media">Medium</option>
-                <option value="Baja">Low</option>
-            </select>
-        </div>
+    <main class="main">
 
-        <div class="control-group">
-            <label><i class="fa-solid fa-book"></i> Subject</label>
-            <input type="text" id="filtroMateria" placeholder="Filter by subject">
-        </div>
-
-        <div class="control-group">
-            <label><i class="fa-solid fa-arrow-up-wide-short"></i> Order</label>
-            <select id="ordenar">
-                <option value="fechaAsc">Date ↑</option>
-                <option value="fechaDesc">Date ↓</option>
-                <option value="prioridadAsc">Priority ↑</option>
-                <option value="prioridadDesc">Priority ↓</option>
-            </select>
-        </div>
-    </div>
-
-    <section class="board">
-
-        <div class="column">
-            <div class="column-header">
-                <span class="column-title">
-                    <i class="fa-solid fa-spinner"></i>
-                    In Progress <span id="countPendiente">(0)</span>
-                </span>
-                <button class="btn icon" data-quick="pendiente">
-                    <i class="fa-solid fa-ellipsis-vertical"></i>
-                </button>
+        <div class="mobile-header">
+            <div class="mobile-brand">
+                <i class="fa-solid fa-list-check"></i>
+                <span>Tasky</span>
             </div>
-            <div class="column-body" id="colPendiente"></div>
-        </div>
 
-        <div class="column">
-            <div class="column-header">
-                <span class="column-title">
-                    <i class="fa-solid fa-circle-check"></i>
-                    Completed <span id="countCompletada">(0)</span>
-                </span>
-                <button class="btn icon" data-quick="completada">
-                    <i class="fa-solid fa-ellipsis-vertical"></i>
-                </button>
-            </div>
-            <div class="column-body" id="colCompletada"></div>
-        </div>
-
-        <div class="column">
-            <div class="column-header">
-                <span class="column-title">
-                    <i class="fa-solid fa-triangle-exclamation"></i>
-                    Over-Due <span id="countVencida">(0)</span>
-                </span>
-                <button class="btn icon" data-quick="vencida">
-                    <i class="fa-solid fa-ellipsis-vertical"></i>
-                </button>
-            </div>
-            <div class="column-body" id="colVencida"></div>
-        </div>
-
-    </section>
-</main>
-
-<div id="modal" class="modal hidden">
-    <div class="modal-content">
-
-        <div class="modal-header">
-            <h3 id="modalTitulo">
-                <i class="fa-solid fa-pen-to-square"></i> Nueva tarea
-            </h3>
-            <button id="btnCerrarModal" class="btn icon">
-                <i class="fa-solid fa-xmark"></i>
+            <button id="btnAbrirModalMobile" class="btn primary">
+                <i class="fa-solid fa-plus"></i>
             </button>
         </div>
 
-        <form id="formTarea" class="form">
-            <input type="hidden" id="editId">
 
-            <div class="form-row">
-                <label><i class="fa-solid fa-heading"></i> Título</label>
-                <input type="text" id="titulo">
+        <div class="topbar">
+            <div class="searchbox">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="busqueda" placeholder="Search tasks">
             </div>
 
-            <div class="form-row">
-                <label><i class="fa-solid fa-book"></i> Materia</label>
-                <input type="text" id="materia">
+            <div class="topbar-right">
+                <button id="btnAbrirModal" class="btn primary">
+                    <i class="fa-solid fa-plus"></i> Add task
+                </button>
             </div>
+        </div>
 
-            <div class="form-row">
-                <label><i class="fa-solid fa-calendar-day"></i> Fecha de entrega</label>
-                <input type="date" id="fecha">
-            </div>
-
-            <div class="form-row">
-                <label><i class="fa-solid fa-flag"></i> Prioridad</label>
-                <select id="prioridad">
-                    <option value="">Seleccione</option>
-                    <option value="Alta">Alta</option>
-                    <option value="Media">Media</option>
-                    <option value="Baja">Baja</option>
+        <div class="controls">
+            <div class="control-group">
+                <label><i class="fa-solid fa-flag"></i> Priority</label>
+                <select id="filtroPrioridad">
+                    <option value="">All</option>
+                    <option value="Alta">High</option>
+                    <option value="Media">Medium</option>
+                    <option value="Baja">Low</option>
                 </select>
             </div>
 
-            <div class="form-row">
-                <label><i class="fa-solid fa-align-left"></i> Descripción</label>
-                <textarea id="descripcion" rows="4"></textarea>
+            <div class="control-group">
+                <label><i class="fa-solid fa-book"></i> Subject</label>
+                <input type="text" id="filtroMateria" placeholder="Filter by subject">
             </div>
 
-            <div id="mensaje" class="mensaje"></div>
+            <div class="control-group">
+                <label><i class="fa-solid fa-arrow-up-wide-short"></i> Order</label>
+                <select id="ordenar">
+                    <option value="fechaAsc">Date ↑</option>
+                    <option value="fechaDesc">Date ↓</option>
+                    <option value="prioridadAsc">Priority ↑</option>
+                    <option value="prioridadDesc">Priority ↓</option>
+                </select>
+            </div>
+        </div>
 
-            <div class="form-actions">
-                <button type="button" id="btnCancelar" class="btn">
-                    <i class="fa-solid fa-ban"></i> Cancelar
-                </button>
-                <button type="submit" class="btn primary">
-                    <i class="fa-solid fa-floppy-disk"></i> Guardar
+        <section class="board">
+
+            <div class="column">
+                <div class="column-header">
+                    <span class="column-title">
+                        <i class="fa-solid fa-spinner"></i>
+                        In Progress <span id="countPendiente">(0)</span>
+                    </span>
+                    <button class="btn icon" data-quick="pendiente">
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                    </button>
+                </div>
+                <div class="column-body" id="colPendiente"></div>
+            </div>
+
+            <div class="column">
+                <div class="column-header">
+                    <span class="column-title">
+                        <i class="fa-solid fa-circle-check"></i>
+                        Completed <span id="countCompletada">(0)</span>
+                    </span>
+                    <button class="btn icon" data-quick="completada">
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                    </button>
+                </div>
+                <div class="column-body" id="colCompletada"></div>
+            </div>
+
+            <div class="column">
+                <div class="column-header">
+                    <span class="column-title">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                        Over-Due <span id="countVencida">(0)</span>
+                    </span>
+                    <button class="btn icon" data-quick="vencida">
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                    </button>
+                </div>
+                <div class="column-body" id="colVencida"></div>
+            </div>
+
+        </section>
+    </main>
+
+    <div id="modal" class="modal hidden">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h3 id="modalTitulo">
+                    <i class="fa-solid fa-pen-to-square"></i> Nueva tarea
+                </h3>
+                <button id="btnCerrarModal" class="btn icon">
+                    <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
-        </form>
 
+            <form id="formTarea" class="form">
+                <input type="hidden" id="editId">
+
+                <div class="form-row">
+                    <label><i class="fa-solid fa-heading"></i> Título</label>
+                    <input type="text" id="titulo">
+                </div>
+
+                <div class="form-row">
+                    <label><i class="fa-solid fa-book"></i> Materia</label>
+                    <input type="text" id="materia">
+                </div>
+
+                <div class="form-row">
+                    <label><i class="fa-solid fa-calendar-day"></i> Fecha de entrega</label>
+                    <input type="date" id="fecha">
+                </div>
+
+                <div class="form-row">
+                    <label><i class="fa-solid fa-flag"></i> Prioridad</label>
+                    <select id="prioridad">
+                        <option value="">Seleccione</option>
+                        <option value="Alta">Alta</option>
+                        <option value="Media">Media</option>
+                        <option value="Baja">Baja</option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <label><i class="fa-solid fa-align-left"></i> Descripción</label>
+                    <textarea id="descripcion" rows="4"></textarea>
+                </div>
+
+                <div id="mensaje" class="mensaje"></div>
+
+                <div class="form-actions">
+                    <button type="button" id="btnCancelar" class="btn">
+                        <i class="fa-solid fa-ban"></i> Cancelar
+                    </button>
+                    <button type="submit" class="btn primary">
+                        <i class="fa-solid fa-floppy-disk"></i> Guardar
+                    </button>
+                </div>
+            </form>
+
+        </div>
     </div>
-</div>
 
-<script>
-function cargarTareas() {}
+    <script>
+        function cargarTareas() { }
 
-function generarId() {
-    return Date.now().toString();
-}
+        function generarId() {
+            return Date.now().toString();
+        }
 
-function prioridadAValor(p) {
-    if (p === "Alta") return 3;
-    if (p === "Media") return 2;
-    return 1;
-}
+        function prioridadAValor(p) {
+            if (p === "Alta") return 3;
+            if (p === "Media") return 2;
+            return 1;
+        }
 
-function obtenerEstado(t) {
-    if (t.completada) return "completada";
-    const hoy = new Date(); hoy.setHours(0,0,0,0);
-    const f = new Date(t.fechaEntrega); f.setHours(0,0,0,0);
-    if (f < hoy) return "vencida";
-    return "pendiente";
-}
-</script>
+        function obtenerEstado(t) {
+            if (t.completada) return "completada";
+            const hoy = new Date(); hoy.setHours(0, 0, 0, 0);
+            const f = new Date(t.fechaEntrega); f.setHours(0, 0, 0, 0);
+            if (f < hoy) return "vencida";
+            return "pendiente";
+        }
+    </script>
 
-<script src="js/data.js"></script>
-<script src="js/create.js"></script>
-<script src="js/read.js"></script>
-<script src="js/update.js"></script>
-<script src="js/delete.js"></script>
-<script src="js/main.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/create.js"></script>
+    <script src="js/read.js"></script>
+    <script src="js/update.js"></script>
+    <script src="js/delete.js"></script>
+    <script src="js/main.js"></script>
 
 </body>
+
 </html>

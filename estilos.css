@@ -510,3 +510,57 @@ body{
   overflow: hidden;
   opacity: 0;
 }
+
+.mobile-header{
+  display:none;
+}
+
+@media (max-width: 768px){
+  .topbar{
+    flex-direction:column;
+    gap:10px;
+  }
+
+  .searchbox{
+    width:100%;
+    padding:12px 14px;
+    font-size:14px;
+  }
+
+  .searchbox input{
+    width:100%;
+    font-size:15px;
+  }
+
+  .topbar-right{
+    display:none;
+  }
+
+  .mobile-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:12px;
+  }
+
+  .mobile-brand{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:18px;
+    font-weight:900;
+    color:#2b3cff;
+  }
+
+  .mobile-brand i{
+    font-size:22px;
+  }
+
+  .controls{
+    flex-direction:column;
+  }
+
+  .control-group{
+    width:100%;
+  }
+}
