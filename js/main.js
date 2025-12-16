@@ -5,7 +5,6 @@ let quickFiltroEstado = "";
 function abrirModal(modo, tarea) {
     const modal = document.getElementById("modal");
     const tituloModal = document.getElementById("modalTitulo");
-    const mensaje = document.getElementById("mensaje");
     const form = document.getElementById("formTarea");
 
     mensaje.textContent = "";
@@ -50,11 +49,15 @@ const editIdInput = document.getElementById("editId");
 const mensaje = document.getElementById("mensaje");
 
 document.addEventListener("DOMContentLoaded", function () {
-
     cargarTareas();
     renderTareas("");
 
-    document.getElementById("btnAbrirModal").addEventListener("click", () => abrirModal("crear"));
+    const btnDesktop = document.getElementById("btnAbrirModal");
+    if (btnDesktop) btnDesktop.addEventListener("click", () => abrirModal("crear"));
+
+    const btnMobile = document.getElementById("btnAbrirModalMobile");
+    if (btnMobile) btnMobile.addEventListener("click", () => abrirModal("crear"));
+
     document.getElementById("btnCerrarModal").addEventListener("click", cerrarModal);
     document.getElementById("btnCancelar").addEventListener("click", cerrarModal);
 
@@ -105,7 +108,6 @@ document.addEventListener("click", function (e) {
     if (accion === "vermas") {
         const desc = document.getElementById("desc_" + id);
         if (!desc) return;
-
         desc.classList.toggle("expandida");
         btn.textContent = desc.classList.contains("expandida") ? "Ver menos" : "Ver más";
     }
@@ -138,10 +140,4 @@ document.addEventListener("click", function (e) {
     if (!body) return;
 
     body.classList.toggle("hidden");
-
-    const btnMobile = document.getElementById("btnAbrirModalMobile");
-    if (btnMobile) {
-        btnMobile.addEventListener("click", () => abrirModal("crear"));
-    }
-
 });
