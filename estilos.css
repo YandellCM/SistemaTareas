@@ -564,3 +564,13 @@ body{
     width:100%;
   }
 }
+
+.searchbox input {
+  width: 100%;
+  max-width: 100%;
+}
+
+* {
+  max-width: 100%;
+}
+
